@@ -1,10 +1,10 @@
+from os import getcwd
 from subprocess import run
 
+from snakypy.zshpower import HOME
 from snakypy.zshpower.config.base import Base
 from snakypy.zshpower.prompt.sections.utils import Version
 from snakypy.zshpower.utils.catch import get_key
-from os import getcwd
-from snakypy.zshpower import HOME
 
 
 class NodeJs(Version, Base):
