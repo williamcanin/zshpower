@@ -251,6 +251,7 @@ prefix.color = "negative"
 prefix.text = "via"
 version.enable = false
 version.micro.enable = true
+version.in_home = false
 
 [ocaml]
 symbol = "ocaml"
