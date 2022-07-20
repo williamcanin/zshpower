@@ -2,6 +2,9 @@ from subprocess import run
 
 from snakypy.zshpower.config.base import Base
 from snakypy.zshpower.prompt.sections.utils import Version
+from snakypy.zshpower.utils.catch import get_key
+from os import getcwd
+from snakypy.zshpower import HOME
 
 
 class NodeJs(Version, Base):
@@ -9,6 +12,7 @@ class NodeJs(Version, Base):
         super(NodeJs, self).__init__()
         self.args: tuple = args
         self.key = "nodejs"
+        self.version_in_home = get_key(self.args[0], self.key, "version", "in_home")
         self.app_executable = "node"
         self.shorten = "node-"
         self.finder = {
@@ -18,6 +22,8 @@ class NodeJs(Version, Base):
         }
 
     def get_version(self, space_elem: str = " ") -> str:
+        if getcwd() == HOME and self.version_in_home is False:
+            return ""
         # args[0]: dict = config file (toml)
         # args[1]: dict = database registers
         return super().get(
