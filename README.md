@@ -333,6 +333,25 @@ The **ZSHPower** configuration file is very intuitive, and just a glance gives y
                           > NOTE: It must be a value in seconds.
 
 
+#### Detect application objects dynamically! [NEW]
+
+Now you can use the keys **detect_extensions**, **detect_files**, and **detect_folders**, keys in each session of a given application to detect the types of extensions, files and folders it uses. So the version shown will be based on the objects you make explicit.
+
+Python session example:
+
+```
+[python]
+...
+detect_extensions = [".pyc"]
+detect_files = ["requirements.txt", "tox.ini"]
+detect_folders = [".mypy_cache"]
+...
+```
+
+You don't need to add keys for every session, just the ones you want to add values to.
+
+Each application detects some extensions, files and folders by default. To avoid redundancy in these values, add only what is not shown. For example, if the file with the `.xyz` extension is not being detected, then add the same to **detect_extensions**.
+
 ## Synchronize
 
 `ZSHPower` stores some information in a database (SQLite 3) to obtain better performance and speed in the display of data. This data is currently the versions of the applications that `ZSHPower` shows on the console. Before, `ZSHPower` showed this information in real time, but it compromised performance and display time.
