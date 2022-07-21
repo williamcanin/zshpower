@@ -3,4 +3,5 @@
   * Fixing bug when showing Python version.
 
 0.13.0
-  * Detect extensions, files and folders dynamically (Github issue #35)
+  * General bug fix
+  * Feature: Detect extensions, files and folders dynamically (Github issue #35)
