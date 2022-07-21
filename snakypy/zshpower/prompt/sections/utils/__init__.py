@@ -8,6 +8,17 @@ from snakypy.zshpower.database.dao import DAO
 from snakypy.zshpower.utils.catch import get_key, verify_objects
 
 
+def detect_eff(config: str, key: str, subkey: str) -> list:
+    """Detect extensions, files, and folders
+    Returns:
+        list
+    """
+    lst: list = get_key(config, key, subkey)
+    if not lst:
+        return []
+    return lst
+
+
 def symbol_ssh(symbol1: str, symbol2: str, spacing: str = " ") -> str:
     if symbol1 != {}:
         if symbol1 != "":
