@@ -3,7 +3,7 @@ from subprocess import run
 
 from snakypy.zshpower import HOME
 from snakypy.zshpower.config.base import Base
-from snakypy.zshpower.prompt.sections.utils import Version
+from snakypy.zshpower.prompt.sections.utils import Version, detect_eff
 from snakypy.zshpower.utils.catch import get_key
 
 
@@ -15,10 +15,13 @@ class NodeJs(Version, Base):
         self.version_in_home = get_key(self.args[0], self.key, "version", "in_home")
         self.app_executable = "node"
         self.shorten = "node-"
+        detect_e = detect_eff(self.args[0], self.key, "detect_extensions")
+        detect_fo = detect_eff(self.args[0], self.key, "detect_folders")
+        detect_fi = detect_eff(self.args[0], self.key, "detect_files")
         self.finder = {
-            "extensions": [".js"],
-            "folders": ["node_modules"],
-            "files": ["package.json"],
+            "extensions": [".js"] + detect_e,
+            "folders": ["node_modules"] + detect_fo,
+            "files": ["package.json"] + detect_fi,
         }
 
     def get_version(self, space_elem: str = " ") -> str:

@@ -9,6 +9,7 @@ from snakypy.helpers.files import read_file
 from snakypy.zshpower import HOME
 from snakypy.zshpower.prompt.sections.utils import (
     Color,
+    detect_eff,
     element_spacing,
     separator,
     symbol_ssh,
@@ -33,17 +34,17 @@ class Python:
         self.config: dict = config
         self.args: tuple = args
         self.enable: bool = get_key(config, "python", "version", "enable")
+        detect_e = detect_eff(self.args[0], "python", "detect_extensions")
+        detect_fo = detect_eff(self.args[0], "python", "detect_folders")
+        detect_fi = detect_eff(self.args[0], "python", "detect_files")
         self.finder = {
-            "extensions": [".py"],
-            "folders": ["__pycache__"],
+            "extensions": [".py"] + detect_e,
+            "folders": ["__pycache__"] + detect_fo,
             "files": [
-                "manage.py",
-                "setup.py",
-                "__init__.py",
                 ".python-version",
-                "requirements.txt",
                 "pyproject.toml",
-            ],
+            ]
+            + detect_fi,
         }
 
         self.symbol = symbol_ssh(get_key(config, "python", "symbol"), "py-")
@@ -63,7 +64,7 @@ class Python:
         # Checking if you use Python through pyenv or the system.
         if isdir(join(HOME, ".pyenv")) or which("pyenv"):
 
-            pyenv_file_local = join(getcwd(), self.finder["files"][3])
+            pyenv_file_local = join(getcwd(), ".python-version")
             pyenv_file_global = join(HOME, ".pyenv/version")
 
             if exists(pyenv_file_local):
