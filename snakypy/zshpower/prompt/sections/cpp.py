@@ -1,7 +1,7 @@
 from subprocess import run
 
 from snakypy.zshpower.config.base import Base
-from snakypy.zshpower.prompt.sections.utils import Version
+from snakypy.zshpower.prompt.sections.utils import Version, detect_eff
 
 
 class Cpp(Version, Base):
@@ -11,7 +11,14 @@ class Cpp(Version, Base):
         self.key = "cpp"
         self.app_executable = "g++"
         self.shorten = "cpp-"
-        self.finder = {"extensions": [".cpp"], "folders": [], "files": []}
+        # detect_e = detect_eff(self.args[0], self.key, "detect_extensions")
+        # detect_fo = detect_eff(self.args[0], self.key, "detect_folders")
+        # detect_fi = detect_eff(self.args[0], self.key, "detect_files")
+        self.finder = {
+            "extensions": [".cpp"],
+            "folders": [],
+            "files": [],
+        }
 
     def get_version(self, space_elem: str = " ") -> str:
         # args[0]: dict = config file (toml)

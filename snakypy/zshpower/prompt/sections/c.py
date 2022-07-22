@@ -1,7 +1,7 @@
 from subprocess import run
 
 from snakypy.zshpower.config.base import Base
-from snakypy.zshpower.prompt.sections.utils import Version
+from snakypy.zshpower.prompt.sections.utils import Version, detect_eff
 
 
 class C(Version, Base):
@@ -11,7 +11,14 @@ class C(Version, Base):
         self.key = "c"
         self.app_executable = "gcc"
         self.shorten = "c-"
-        self.finder = {"extensions": [".c"], "folders": [], "files": []}
+        # detect_e = detect_eff(self.args[0], self.key, "detect_extensions")
+        # detect_fo = detect_eff(self.args[0], self.key, "detect_folders")
+        # detect_fi = detect_eff(self.args[0], self.key, "detect_files")
+        self.finder = {
+            "extensions": [".c"],
+            "folders": [],
+            "files": [],
+        }
 
     def get_version(self, space_elem: str = " ") -> str:
         # args[0]: dict = config file (toml)

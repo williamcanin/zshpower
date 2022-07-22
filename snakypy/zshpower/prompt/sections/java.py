@@ -11,13 +11,13 @@ class Java(Version, Base):
         self.key = "java"
         self.app_executable = "java"
         self.shorten = "java-"
-        detect_e = detect_eff(self.args[0], self.key, "detect_extensions")
-        detect_fo = detect_eff(self.args[0], self.key, "detect_folders")
-        detect_fi = detect_eff(self.args[0], self.key, "detect_files")
+        # detect_e = detect_eff(self.args[0], self.key, "detect_extensions")
+        # detect_fo = detect_eff(self.args[0], self.key, "detect_folders")
+        # detect_fi = detect_eff(self.args[0], self.key, "detect_files")
         self.finder = {
-            "extensions": [".java", ".class"] + detect_e,
-            "folders": [] + detect_fo,
-            "files": [".java-version", "project.clj", "build.boot"] + detect_fi,
+            "extensions": [".java", ".class"],
+            "folders": [],
+            "files": [".java-version", "project.clj", "build.boot"],
         }
 
     def get_version(self, space_elem: str = " ") -> str:
